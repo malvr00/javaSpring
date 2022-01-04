@@ -2,6 +2,7 @@ package board.board.controller;
 
 import java.util.List;
 
+
 import board.board.dto.BoardDto;
 import board.board.service.BoardService;
 
@@ -10,17 +11,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+// 구현체 사용않고 import해서 의존성만 사용. 장점은 다른 라이브러리로 쉽게 변경할 수 있음.
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	
+	private Logger log = LoggerFactory.getLogger(this.getClass()); // Logger 클래스 객체생
+			
 	@RequestMapping("/board/openBoardList.do")
 	public ModelAndView openBoardList() throws Exception{
 		// /boadr/boardList는 template 더 아래에 있는 board/boardList.html 가르킴
 		ModelAndView mv = new ModelAndView("/board/boardList");
+		log.debug("openBoardList");	// 테스트용 - openBoardLis 문자열 출력
 		
 		List<BoardDto> list = boardService.selectBoardList();
 		// 결과값 담긴 list를 list에 담아 html에 뿌려줌
