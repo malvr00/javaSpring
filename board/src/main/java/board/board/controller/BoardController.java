@@ -15,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//import lombok.extern.slf4j.Slf4j;
+
+//@Slf4j		// 어노베이션을 사용하면 로거를 따로 생성할 필요가 없음.
 @Controller
 public class BoardController {
 	
