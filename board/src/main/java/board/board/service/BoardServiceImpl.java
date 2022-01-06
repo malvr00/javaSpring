@@ -5,10 +5,12 @@ import board.board.mapper.BoardMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional // 인터페이스나 클래스, 메서드에 사용할 수 있다. 어노테이션이 적용된 대상은 설정된 트랜잭션이 처리됨
 public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
