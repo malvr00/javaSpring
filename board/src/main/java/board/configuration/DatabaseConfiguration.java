@@ -19,7 +19,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:/application.properties")
-@EnableTransactionManagement	// 트랜잭션 어노베이션 활용
+//@EnableTransactionManagement	// 트랜잭션 어노베이션 활용
 public class DatabaseConfiguration {
 	
 	@Autowired
