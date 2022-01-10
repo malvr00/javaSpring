@@ -1,5 +1,5 @@
-# javaSpring
-맥에서 javaspring 복습
+# javaSpring - Boot
+javaspring-boot 복습
 
 ## Servlet 이란
 
