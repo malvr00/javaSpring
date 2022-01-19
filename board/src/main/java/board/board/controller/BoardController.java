@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 // 구현체 사용않고 import해서 의존성만 사용. 장점은 다른 라이브러리로 쉽게 변경할 수 있음.
 import org.slf4j.Logger;
@@ -44,8 +45,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/insertBoard.do")
-	public String insertBoard(BoardDto board) throws Exception{
-		boardService.insertBoard(board);
+	public String insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+		// MultipartHttpServletRequest는 ServletRequest를 상속받아 구현된 인터페이스 ( 업로드된 파일을 처리하기 위한 여러가지 메소드 제공)
+		boardService.insertBoard(board, multipartHttpServletRequest);
 		return "redirect:/board/openBoardList.do";
 	}
 	
