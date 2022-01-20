@@ -18,7 +18,10 @@
 		]]>
 	</select>
 	
-	<insert id="insertBoard" parameterType="board.board.dto.BoardDto">
+	<!-- 게시글을 작성할 때 등록된 게시글 번호를 받아오는 방법으로 쿼리를 변경하면서 다루는 방법 -->
+	<!-- useGeneratedKeys 속성은 DBMS가 자동 생성키를 지원할 경우 사용 -->
+	<!-- keyProperty는 useGeneratedKeys나 selectKey의 하위 엘리먼트에 의해 리턴되는 키를 의미 -->
+	<insert id="insertBoard" parameterType="board.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="boardIdx">
 		<![CDATA[
 			INSERT INTO t_board(
 				title,
@@ -33,6 +36,26 @@
 				'admin'
 			)
 		]]>
+	</insert>
+	<insert id="insertBoardFileList" parameterType="board.board.dto.BoardFileDto">
+		<![CDATA[
+			INSERT INTO t_file
+			(
+				board_idx, original_file_name, stored_file_path, file_size, creator_id, created_datetime
+			)
+			VALUES
+		]]>
+		<!-- separator 은 반복되는 문자열을 구분하기 위해서 사용 -->
+		<foreach collection="list" item="item" separator=",">
+			(
+				#{item.boardIdx},
+				#{item.originalFileName},
+				#{item.storedFilePath},
+				#{item.fileSize},
+				'admin',
+				NOW()
+			)
+		</foreach>
 	</insert>
 	
 	<update id="updateHitCount" parameterType="int">

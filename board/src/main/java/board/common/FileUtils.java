@@ -61,7 +61,7 @@ public class FileUtils {
 				boardFile.setBoardIdx(boardIdx);
 				boardFile.setFileSize(multipartFile.getSize());
 				boardFile.setOriginalFileName(multipartFile.getOriginalFilename());
-				boardFile.setStoredFiledPath(path + "/" + newFileName);
+				boardFile.setStoredFilePath(path + "/" + newFileName);
 				fileList.add(boardFile);
 				
 				// 지정된 경로에 저장

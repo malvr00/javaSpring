@@ -20,7 +20,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
 		commonsMultipartResolver.setDefaultEncoding("UTF-8");	// 인코딩 UTF-8로 설정
-		commonsMultipartResolver.setMaxUploadSizePerFile(5 % 1024 * 1024);	// 파일 크기 설정 (byte)단위로 설정
+		commonsMultipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024);	// 파일 크기 설정 (byte)단위로 설정
 		
 		return commonsMultipartResolver;
 	}
