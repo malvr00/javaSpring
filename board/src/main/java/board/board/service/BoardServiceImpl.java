@@ -72,8 +72,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardDto selectBoardDetail(int boardIdx) throws Exception{
 		boardMapper.updateHitCount(boardIdx);
-		int i = 10 / 0;
 		BoardDto board = boardMapper.selectBoardDetail(boardIdx);
+		
+		List<BoardFileDto> fileList = boardMapper.selectBoardFileList(boardIdx);
+		board.setFileList(fileList);
 		
 		return board;
 	}

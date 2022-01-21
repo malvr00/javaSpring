@@ -17,6 +17,19 @@
 			ORDER BY board_idx DESC
 		]]>
 	</select>
+	<!-- FORAMT - > kb로 변환 ( 소수점 반올림 해서 ) -->
+	<select id="selectBoardFileList" parameterType="int" resultType="board.board.dto.BoardFileDto">
+		<![CDATA[
+			SELECT
+				idx, board_idx, original_file_name,
+				FORMAT(ROUND(file_size / 1024), 0) AS file_size
+			FROM
+				t_file
+			WHERE
+				board_idx = #{boardIdx}
+				AND deleted_yn = 'N'
+		]]>
+	</select>
 	
 	<!-- 게시글을 작성할 때 등록된 게시글 번호를 받아오는 방법으로 쿼리를 변경하면서 다루는 방법 -->
 	<!-- useGeneratedKeys 속성은 DBMS가 자동 생성키를 지원할 경우 사용 -->
