@@ -1,6 +1,11 @@
 # javaSpring - Boot
 javaspring-boot 복습
 
+## USE
+
+mysql, 히카리cp, thymeleaf, postman, lombok, logback, Interceptor, AOP, Transaction적용 테스트, REST API, JPA, 스웨거, 젠킨스
+
+---
 ## Servlet 이란
 
 서블릿이란 자바를 사용하여 웹을 만들기 위해 필요한 기술입니다. 그런데 좀더 들어가서 설명하면 
