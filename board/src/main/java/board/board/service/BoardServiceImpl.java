@@ -77,6 +77,7 @@ public class BoardServiceImpl implements BoardService{
 		List<BoardFileDto> fileList = boardMapper.selectBoardFileList(boardIdx);
 		board.setFileList(fileList);
 		
+		boardMapper.updateHitCount(boardIdx);
 		return board;
 	}
 	
