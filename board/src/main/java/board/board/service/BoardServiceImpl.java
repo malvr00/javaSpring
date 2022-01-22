@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardMapper boardMapper;
 	
-//	@Autowired	//	무한 재귀호출 되는 경우가 있어서 @AutowiredArgsConstructor 어노테이션 활용해서 
+//	@Autowired	//	무한 재귀호출 되는 경우가 있어서 @RequiredArgsConstructor 어노테이션 활용해서 
 //	private FileUtils fileUtils;
 	
 	private final FileUtils fileUtils;
@@ -89,5 +89,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(int boardIdx) throws Exception{
 		boardMapper.deleteBoard(boardIdx);
+	}
+	
+	@Override
+	public BoardFileDto selectBoardFileInformation(int idx, int boardIdx) throws Exception{
+		return boardMapper.selectBoardFileInformation(idx, boardIdx);
 	}
 }
