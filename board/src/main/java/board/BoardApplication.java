@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-
+// @EntityScan 애플리케이션이 실행될 때 basePackages로 지정된 패키지 하위에서
+// JPA 엔티티를 검색
 @EnableJpaAuditing
 @EntityScan(
 		basePackageClasses = {Jsr310JpaConverters.class},
