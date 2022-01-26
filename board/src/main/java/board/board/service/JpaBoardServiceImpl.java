@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import board.board.dto.BoardUpdateRequestDto;
 import board.board.entity.BoardEntity;
 import board.board.entity.BoardFileEntity;
 import board.board.repository.JpaBoardRepository;
@@ -60,5 +62,15 @@ public class JpaBoardServiceImpl implements JpaBoardService{
 	public BoardFileEntity selectBoardFileInformation(int boardIdx, int idx) throws Exception{
 		BoardFileEntity boardFile = jpaBoardRepository.findBoardFile(boardIdx, idx);
 		return boardFile;
+	}
+
+	@Override
+	@Transactional
+	public BoardEntity updateBoard(BoardUpdateRequestDto dto) {
+		BoardEntity board = jpaBoardRepository.findById(Integer.parseInt(dto.getIdx()))
+				.get();
+		board.contentsUpdate(dto.getContents());
+		
+		return board;
 	}
 }

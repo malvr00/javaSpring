@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.List;
 
+import board.board.dto.BoardUpdateRequestDto;
 import board.board.entity.BoardEntity;
 import board.board.entity.BoardFileEntity;
 import board.board.service.JpaBoardService;
@@ -41,6 +44,12 @@ public class JpaBoardController {
 		mv.addObject("list", list);
 		
 		return mv;
+	}
+	
+	@PutMapping("/board/update")
+	public String boardUpdate(@RequestBody BoardUpdateRequestDto dto) {
+		jpaBoardService.updateBoard(dto);
+		return "redirect:/board/openBoardList.do";
 	}
 	
 	@RequestMapping(value="/jpa/board/write", method=RequestMethod.GET)
@@ -67,7 +76,7 @@ public class JpaBoardController {
 	}
 	
 	@RequestMapping(value="/jpa/board/{boardIdx}", method=RequestMethod.PUT)
-	public String updateBoard(BoardEntity board) throws Exception{
+	public String updateBoard(BoardEntity board, @PathVariable("boardIdx") int boardIdx) throws Exception{
 		jpaBoardService.saveBoard(board, null);
 		return "redirect:/jpa/board";
 	}

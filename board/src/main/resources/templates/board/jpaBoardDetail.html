@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h2>게시판 상세 화면</h2>
-	<form id="frm" method="post">
+	<form id="frm" method="post" enctype="application/json">
 		<table class="board_detail">
 			<tbody>
 				<tr>
@@ -33,7 +33,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="hidden" name="boardIdx" th:value="${board.boardIdx}"/>
+		<input type="hidden" id="idx" name="idx" th:value="${board.boardIdx}"/>
 		<input type="hidden" id="method" name="_method" />
 	</form>
 	<div class="file_list">
@@ -55,8 +55,25 @@
 			$("#edit").on("click", function(){
 				$("#method").val("put");
 				var frm = $("#frm")[0];
-				frm.action = "/jpa/board/"+boardIdx;
-				frm.submit();
+/* 				var idx = $("#boardIdx").val() */
+  				var i = $("#idx").val();
+				var c = $("#contents").val();	
+ 
+				alert(i);
+				alert(c);
+/* 				frm.action = "/jpa/board/"+idx; */
+/* 				frm.action = "/board/update"
+				frm.submit(); */
+				var d = {
+						idx:i,
+						contents:c
+				}
+				$.ajax({
+					contentType : "application/json",
+					url : "/board/update",
+					type: "put",
+					data : JSON.stringify(d)
+				})
 			});
 			
 			$("#delete").on("click", function(){
