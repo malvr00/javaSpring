@@ -28,5 +28,3 @@ UDP보다 처리 속도가 느리다.
 HTML 변경 시 Servlet을 재컴파일해야 하는 단점이 있다.
 
 출처: https://mangkyu.tistory.com/14 [MangKyu's Diary]
-
----
